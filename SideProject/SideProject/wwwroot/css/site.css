@@ -1,0 +1,113 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: floralwhite;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+section.main h1 {
+    text-align: center;
+}
+
+section.main img.center {
+    height: 50%;
+    width: 50%;
+}
+
+section.main div {
+    text-align: center;
+}
+
+section.frame {
+    display: grid;
+    grid-template-columns: 8% 1fr 1fr 1fr 8%;
+    grid-template-areas: ". one two three .";
+    grid-gap: 10px 10px;
+}
+
+    section.frame div.one {
+        display:inline-block;
+        grid-area: one;
+        height: 50%;        
+    }
+
+    section.frame div.two {
+        display: inline-block;
+        grid-area: two;
+        height: 50%;
+    }
+
+    section.frame div.three {
+        display: inline-block;
+        grid-area: three;
+        height: 50%;
+    }
+
+    section.frame div.one img {        
+        width: 100%;
+    }
+
+    section.frame div.two img {       
+        width: 100%;
+    }
+
+    section.frame div.three img {     
+        width: 100%;
+    }
+
+
+

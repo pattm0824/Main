@@ -1,0 +1,18 @@
+﻿@model IList<Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table>
+    @foreach (Product product in Model)
+    {
+        <tr>
+            <td id="imagetd"><a asp-controller="Store" asp-action="Detail" asp-route-Id="@product.Id"><img src="~/images/@product.Image" /></a></td>
+            <td><p>@product.Name</p><p style="color:deepskyblue">@product.Price.ToString("C")</p></td>
+        </tr>
+    }
+</table>
+

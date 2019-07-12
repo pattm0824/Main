@@ -1,0 +1,47 @@
+﻿@model ShoppingCart
+
+@{
+    ViewData["Title"] = "ViewCart";
+}
+
+<h1>ViewCart</h1>
+
+<table>
+    <thead>
+        <tr>
+            <td></td>
+            <td class="bold">Name</td>
+            <td class="bold">Price</td>
+            <td class="bold">Qty</td>
+            <td class="bold">Total</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ShoppingCartItem item in Model.Items)
+        {
+            <tr>
+                <td id="imagetd"><img src="~/images/@item.Product.Image" /></td>
+                <td>@item.Product.Name</td>
+                <td>@item.Product.Price</td>
+                <td>@item.Quantity</td>
+                <td>@((item.Product.Price * item.Quantity).ToString("C"))</td>
+            </tr>
+        }
+        <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="bold">Grand Total @Model.GrandTotal</td>
+        </tr>
+        <tr id="checkout">
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="#">Check Out</a></td>
+        </tr>
+    </tbody>
+</table>

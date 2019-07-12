@@ -1,0 +1,24 @@
+﻿@model ShoppingCartItem
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Detail</h1>
+
+<table>
+    <tr>
+        <td id="imagetd"><img src="~/images/@Model.Product.Image" /></td>
+        <td><p>@Model.Product.Name</p><p style="color:deepskyblue;">@Model.Product.Price.ToString("C")</p><p style="font-weight:normal;">@Model.Product.Description</p></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <form asp-controller="Store" asp-action="Detail" method="post">
+                <input type="hidden" asp-for="@Model.Product.Id" />
+                Quantity to buy <input type="number" asp-for="@Model.Quantity" />
+                <input type="Submit" value="Add To Cart" />
+            </form>
+        </td>
+    </tr>
+
+</table>

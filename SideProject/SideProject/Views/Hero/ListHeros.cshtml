@@ -1,0 +1,16 @@
+﻿@model IList<Hero>
+@{
+    ViewData["Title"] = "ListHeros";
+}
+
+<h1>Select your Hero:</h1>
+
+
+@foreach (Hero hero in Model)
+{
+
+    <p>@hero.Name</p>
+    <p><a asp-controller="Hero" asp-action="HeroDetail" asp-route-id="@hero.HeroId"><img src="~/images/@hero.ProfileImage" /></a></p>
+
+}
+

@@ -1,0 +1,27 @@
+﻿@model Hero
+@{
+    ViewData["Title"] = "HeroDetail";
+}
+
+<h1>Hero Details:</h1>
+
+<p>@Model.Name</p>
+<p>
+    @for (int i = 0; i < (Model.Difficulty); i++)
+    {
+        <img src="~/images/star.png" />
+    }
+</p>
+
+<p><img src="~/images/@Model.Image" /></p>
+<p>@Model.About</p>
+
+@foreach(Abilities ability in Model.Abilities)
+    {
+        <p>@ability.Basic</p>
+        <p>@ability.Heavy</p>
+        <p>@ability.Transform</p>
+        <p>@ability.Protection</p>
+        <p>@ability.Ultimate</p>
+    }
+
