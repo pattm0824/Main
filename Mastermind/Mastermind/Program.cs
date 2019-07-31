@@ -7,7 +7,6 @@ namespace Mastermind
     {
         static void Main(string[] args)
         {
-            //**** Generate a randomized four digit list
             const int value = 4;
             Random rnd = new Random();
             List<int> solution = new List<int>();
@@ -15,12 +14,9 @@ namespace Mastermind
             {
                 solution.Add(rnd.Next(1, 7));
             }
-            // Console.WriteLine($"{solution[0]}, {solution[1]}, {solution[2]}, {solution[3]} ");
 
-            //**** An array to hold the displayed results
             string[] display = new string[4];
 
-            //**** Ten attempts to guess the correct four digits
             Console.WriteLine("You have 10 attempts to guess the correct four digit randomized sequence.");
             Console.WriteLine();
             Console.WriteLine("A minus (-) sign should be printed for every digit that is correct but in the wrong position,");
@@ -41,7 +37,6 @@ namespace Mastermind
                 }
                 else
                 {
-                    //**** Receive four digit user input
                     Console.Write("Please enter four digits between 1-6 seperated by a space (ex: '1 2 3 4'):");
                     string[] inputValue = Console.ReadLine().Split(' ');
                     List<int> input = new List<int>();
@@ -61,9 +56,7 @@ namespace Mastermind
                         {
                             Console.WriteLine("Please enter a valid four digit number sequence between 1-6.");
                         }
-                        //Console.WriteLine($"{input[0]}, {input[1]}, {input[2]}, {input[3]} ");
 
-                        //**** Logic to return results form user input
                         for (int i = 0; i < input.Count; i++)
                         {
                             if (solution.Contains(input[i]))
@@ -86,7 +79,6 @@ namespace Mastermind
                         Console.WriteLine($"{display[0]}, {display[1]}, {display[2]}, {display[3]}");
                         attempts--;
                     }
-
                 }
             }
             Console.ReadKey();
