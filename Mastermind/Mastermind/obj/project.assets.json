@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MPatt\\Desktop\\Main\\Mastermind\\Mastermind\\Mastermind\\Mastermind.csproj",
+      "projectUniqueName": "C:\\Users\\MPatt\\Desktop\\Main\\Mastermind\\Mastermind\\Mastermind.csproj",
       "projectName": "Mastermind",
-      "projectPath": "C:\\Users\\MPatt\\Desktop\\Main\\Mastermind\\Mastermind\\Mastermind\\Mastermind.csproj",
+      "projectPath": "C:\\Users\\MPatt\\Desktop\\Main\\Mastermind\\Mastermind\\Mastermind.csproj",
       "packagesPath": "C:\\Users\\MPatt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MPatt\\Desktop\\Main\\Mastermind\\Mastermind\\Mastermind\\obj\\",
+      "outputPath": "C:\\Users\\MPatt\\Desktop\\Main\\Mastermind\\Mastermind\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

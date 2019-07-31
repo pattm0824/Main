@@ -21,12 +21,17 @@ namespace Mastermind
             string[] display = new string[4];
 
             //**** Ten attempts to guess the correct four digits
-
+            Console.WriteLine("You have 10 attempts to guess the correct four digit randomized sequence.");
+            Console.WriteLine();
+            Console.WriteLine("A minus (-) sign should be printed for every digit that is correct but in the wrong position,");
+            Console.WriteLine("a plus(+) sign should be printed for every digit that is both correct and in the correct position,");
+            Console.WriteLine("and nothing for incorrect digits. Good Luck!");
+            Console.WriteLine();
             for (int attempts = 10; attempts >= 0;)
             {
                 if (attempts == 0)
                 {
-                    Console.WriteLine("Sorry, you lost. You have incorrectly guessed the four digits.");
+                    Console.WriteLine($"Sorry, you lost. You have incorrectly guessed the four digits {solution[0]}, {solution[1]}, {solution[2]}, {solution[3]} .");
                     break;
                 }
                 else if ((display[0] == "+") && (display[1] == "+") && (display[2] == "+") && (display[3] == "+"))
@@ -37,7 +42,7 @@ namespace Mastermind
                 else
                 {
                     //**** Receive four digit user input
-                    Console.WriteLine("Please enter four digits between 1-6 seperated by a space (ex: '1 2 3 4'):");
+                    Console.Write("Please enter four digits between 1-6 seperated by a space (ex: '1 2 3 4'):");
                     string[] inputValue = Console.ReadLine().Split(' ');
                     List<int> input = new List<int>();
 
