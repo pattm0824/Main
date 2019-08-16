@@ -1,0 +1,88 @@
+﻿@using WebApplication.Web.Models.Goal
+
+@model GoalVM
+<form method="post" asp-action="GoalCalories">
+
+    <h3 class="text-warning text-center"><b><i>A healthy path starts with a goal</i></b></h3>
+
+    <table class="table table-striped">
+        <tr>
+            <td>
+                <label asp-for="Goal.Gender">Gender</label>
+            </td>
+            <td>
+                <select asp-for="Goal.Gender" class="input-sm text-warning">
+                    <option type="text" value="f">Female</option>
+                    <option type="text" value="m">Male</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Goal.Age">Age</label>
+            </td>
+            <td>
+                <input asp-for="Goal.Age" type="number" placeholder="Years" class="input-sm text-warning">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Goal.CurrentWeight">Weight</label>
+            </td>
+            <td>
+                <input asp-for="Goal.CurrentWeight" type="number" placeholder="lbs" class="input-sm text-warning">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Goal.GoalWeight">Goal Weight</label>
+            </td>
+            <td> <input asp-for="Goal.GoalWeight" type="number" placeholder="lbs" class="input-sm text-warning"></td>
+        </tr>
+        <tr>
+            <td> <label asp-for="Goal.Height">Height(in)</label></td>
+            <td><input asp-for="Goal.Height" type="number" placeholder="Inches" class="input-sm text-warning"></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Goal.Activity">Activity Level:</label></td>
+            <td>
+                <input type="radio" value="Sedentary" asp-for="Goal.Activity" />Sedentary
+                <br />
+                <input type="radio" value="Lightly Active" asp-for="Goal.Activity" />Lightly Active
+                <br />
+                <input type="radio" value="Moderately Active" asp-for="Goal.Activity" />Moderately Active
+                <br />
+                <input type="radio" value="Extremely Active" asp-for="Goal.Activity" />Extremely Active
+                <br />
+            </td>
+        <tr>
+            <td> <label asp-for="Goal.GoalTime">Select a time period to complete goal:</label></td>
+            <td>
+                <select asp-for="Goal.GoalTime" class="input-sm text-warning">
+                    <option value="">— Select from the dropdown —</option>
+                    <option value="-0.5">Lose 1/2 pound per week</option>
+                    <option value="-1">Lose 1 pound per week</option>
+                    <option value="-2">Lose 2 pounds per week</option>
+                    <option value="0">Maintain your current weight</option>
+                    <option value="0.5">Gain 1/2 pound per week</option>
+                    <option value="1">Gain 1 pound per week</option>
+                    <option value="2">Gain 2 pounds per week</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--Todo..........Calculate needs to calculate goal and display goal results -->
+                <input type="submit" value="Save" class="btn btn-warning" />
+            </td>
+            <td>
+                <h4 class="text-danger"><i>Your daily calorie intake is going to be:</i></h4>
+                <h4 asp-for="Goal.CalorieGoal" class="text-danger"><b>@Model.Goal.CalorieGoal</b> <i>Calories</i></h4>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<nav>
+    <h4><a asp-action="Index" class="glyphicon glyphicon-arrow-left"> Back</a></h4>
+</nav>

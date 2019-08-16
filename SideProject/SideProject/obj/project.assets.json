@@ -12939,11 +12939,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MPatt\\TechElevator\\Side Projects\\SideProject\\SideProject\\SideProject\\SideProject.csproj",
+      "projectUniqueName": "C:\\Users\\MPatt\\Desktop\\Main\\SideProject\\SideProject\\SideProject.csproj",
       "projectName": "SideProject",
-      "projectPath": "C:\\Users\\MPatt\\TechElevator\\Side Projects\\SideProject\\SideProject\\SideProject\\SideProject.csproj",
+      "projectPath": "C:\\Users\\MPatt\\Desktop\\Main\\SideProject\\SideProject\\SideProject.csproj",
       "packagesPath": "C:\\Users\\MPatt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MPatt\\TechElevator\\Side Projects\\SideProject\\SideProject\\SideProject\\obj\\",
+      "outputPath": "C:\\Users\\MPatt\\Desktop\\Main\\SideProject\\SideProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

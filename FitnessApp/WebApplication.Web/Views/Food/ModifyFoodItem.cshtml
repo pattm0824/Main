@@ -1,0 +1,46 @@
+﻿@model SearchFoodVM
+@{
+    ViewData["Title"] = $"Modify Your {Model.MealType}";
+}
+
+<h2 class="text-center text-warning">@Model.MealType</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-warning">Item</th>
+            <th class="text-warning"># of Servings</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Food fooditem in Model.FoodList)
+        {
+            @if ((fooditem.MealType == Model.MealType) && (fooditem.MealDate.Date == DateTime.Today.Date))
+            {
+                <tr>
+                    <td style="width:50%;">
+                        <h4 class="text-warning"><b>@fooditem.Name</b></h4><span class="text-warning">(Serving Size:@fooditem.ServingSize)</span>
+                        <p class="text-warning">(Cal:@fooditem.Calories, Protein:@fooditem.Protein, Fat:@fooditem.Fat, Carbs:@fooditem.Carbs)</p>
+                    </td>
+                    <td style="width:30%;">
+                        <form asp-action="UpdateServings" asp-controller="Food" method="post">
+                            <input type="number" asp-for="food.NumberOfServings" class="input-sm text-warning" style="width:30px;" />
+                            <input type="submit" value="✏" class="btn btn-warning" />
+                            <input type="hidden" asp-for="food.LogId" value="@fooditem.LogId" />
+                            <input type="hidden" asp-for="food.MealType" value="@Model.MealType" />
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-action="DeleteEntry" asp-controller="Food" method="post">
+                            <input type="hidden" asp-for="food.LogId" value="@fooditem.LogId" />
+                            <input type="submit" value="❌" class="btn btn-warning" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<nav>
+    <h4><a asp-action="Index" asp-controller="Profile" class="glyphicon glyphicon-arrow-left"> Back</a></h4>
+</nav>

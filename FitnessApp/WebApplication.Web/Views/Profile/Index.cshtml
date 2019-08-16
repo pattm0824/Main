@@ -1,0 +1,246 @@
+﻿@model ProfileVM
+@{
+    ViewData["Title"] = "Index";
+}
+@*<h2>Welcome @Model.User.Name</h2>*@
+
+<h3 class="text-warning text-center">Welcome @Model.User.Name</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td style="width:50%" class="text-warning text-center">Earn stars for tracking your meals:</td>
+
+            <td class="text-warning text-center progress">
+                <div>
+                    @if(Model.User.Stars == 0)
+                    {
+                        <p style="padding-top:4%"><a asp-action="LearnHow">Learn How</a></p>
+                    }
+                    else if (Model.User.Stars <= 5)
+                    {
+                        @for (int i = 0; i < Model.User.Stars; i++)
+                        {
+                            <img src="~/images/star.png" style="width: 15%" />
+                        }
+                    }
+                    else
+                    {
+                        <h4><img src="~/images/star.png" style="width: 15%" /> X @Model.User.Stars</h4>
+                    }
+                </div>
+            </td>
+
+        </tr>
+    </thead>
+</table>
+
+@{
+    double CalculateIntakeCalories(IList<Food> list)
+    {
+        double intakeCal = 0;
+
+        foreach (Food food in list)
+        {
+            if (food.MealDate.Date == DateTime.Today.Date)
+            {
+                intakeCal += (food.Calories * food.NumberOfServings);
+            }
+        }
+        Model.intakeCalories = intakeCal;
+        return intakeCal;
+    }
+}
+
+@{
+    double CalculateRemainingCalories(double goalCal, double intakeCal)
+    {
+        double remainingCal = 0;
+        remainingCal = goalCal - intakeCal;
+        return remainingCal;
+    }
+}
+
+<form>
+    <div class="container">
+        <table class=" table table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        <h3 class="text-center">@Model.Goal.CalorieGoal</h3>
+                        <br />
+                        <p class="text-center">Goal</p>
+                    </th>
+                    <th><h3 class="text-center">-</h3></th>
+                    <th>
+                        <h3 class="text-center">@CalculateIntakeCalories(Model.FoodList)</h3>
+                        <br />
+                        <p class="text-center">Intake</p>
+                    </th>
+                    <th><h3 class="text-center">=</h3></th>
+                    @if ((@CalculateRemainingCalories(Model.Goal.CalorieGoal, Model.intakeCalories) < 0))
+                    {
+                        <th class="alert-danger">
+                            <h3 class="text-danger text-center">@(CalculateRemainingCalories(Model.Goal.CalorieGoal, Model.intakeCalories) * -1)</h3>
+                            <br />
+                            <p class="text-danger  text-center" style="width:75%; padding-left:25%;">OVER</p>
+                        </th>
+                    }
+                    else
+                    {
+                        <th>
+                            <h3 class="text-center">@(CalculateRemainingCalories(Model.Goal.CalorieGoal, Model.intakeCalories))</h3>
+                            <br />
+                            <p class="text-center">Remaining</p>
+                        </th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+
+
+
+
+    <nav class="navbar navbar-inverse navbar-fixed">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color:white"><b>Breakfast</b></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <table class="table table-striped">
+            <col width="250" />
+            <col width="50" />
+            <thead>
+                <tr>
+                    <th><h4><a asp-action="AddFoodItem" asp-controller="Food" asp-route-MealType="Breakfast" class=" glyphicon glyphicon-plus-sign">Add</a></h4></th>
+                    <th><h4><a asp-action="ModifyFoodItem" asp-controller="Food" asp-route-MealType="Breakfast" class=" glyphicon glyphicon-pencil">Modify</a></h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Food food in Model.FoodList)
+                {
+                    @if ((food.MealType == "Breakfast") && (food.MealDate.Date == DateTime.Today.Date))
+                    {
+                        <tr>
+                            <td>@food.Name</td>
+                            <td> @(food.Calories * food.NumberOfServings)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <nav class="navbar navbar-inverse navbar-fixed">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color:white"><b>Lunch</b></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <table class="table table-striped">
+            <col width="250" />
+            <col width="50" />
+            <thead>
+                <tr>
+                    <th><h4><a asp-action="AddFoodItem" asp-controller="Food" asp-route-MealType="Lunch" class=" glyphicon glyphicon-plus-sign">Add</a></h4></th>
+                    <th><h4><a asp-action="ModifyFoodItem" asp-controller="Food" asp-route-MealType="Lunch" class=" glyphicon glyphicon-pencil">Modify</a></h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Food food in Model.FoodList)
+                {
+                    @if ((food.MealType == "Lunch") && (food.MealDate.Date == DateTime.Today.Date))
+                    {
+                        <tr>
+                            <td>@food.Name </td>
+                            <td>@(food.Calories * food.NumberOfServings)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <nav class="navbar navbar-inverse navbar-fixed">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color:white"><b>Dinner</b></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <table class="table table-striped">
+            <col width="250" />
+            <col width="50" />
+            <thead>
+                <tr>
+                    <th><h4><a asp-action="AddFoodItem" asp-controller="Food" asp-route-MealType="Dinner" class=" glyphicon glyphicon-plus-sign">Add</a></h4></th>
+                    <th><h4><a asp-action="ModifyFoodItem" asp-controller="Food" asp-route-MealType="Dinner" class=" glyphicon glyphicon-pencil">Modify</a></h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Food food in Model.FoodList)
+                {
+                    @if ((food.MealType == "Dinner") && (food.MealDate.Date == DateTime.Today.Date))
+                    {
+                        <tr>
+                            <td>@food.Name </td>
+                            <td>@(food.Calories * food.NumberOfServings)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <nav class="navbar navbar-inverse navbar-fixed">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="color:white"><b>Snack</b></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <table class="table table-striped">
+            <col width="250" />
+            <col width="50" />
+            <thead>
+                <tr>
+                    <th><h4><a asp-action="AddFoodItem" asp-controller="Food" asp-route-MealType="Snack" class=" glyphicon glyphicon-plus-sign">Add</a></h4></th>
+                    <th><h4><a asp-action="ModifyFoodItem" asp-controller="Food" asp-route-MealType="Snack" class=" glyphicon glyphicon-pencil">Modify</a></h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Food food in Model.FoodList)
+                {
+                    @if ((food.MealType == "Snack") && (food.MealDate.Date == DateTime.Today.Date))
+                    {
+                        <tr>
+                            <td>@food.Name </td>
+                            <td>@(food.Calories * food.NumberOfServings)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <ul class="nav nav-pills nav-justified">
+            <li class="page-item"><a asp-action="UpdateProfile" asp-controller="Profile">Profile</a></li>
+            <li class="page-item"><a asp-action="Goal" asp-controller="Profile">Goal</a></li>
+            <li class="page-item"><a asp-action="Progress" asp-controller="Profile">Progress</a></li>
+            <li class="page-item"><a asp-action="Logoff" asp-controller="Account">Logout</a></li>
+        </ul>
+    </div>
+</form>

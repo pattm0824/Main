@@ -1,0 +1,28 @@
+﻿@model WeightTrackerVM
+
+@{
+    ViewData["Title"] = "Progress";
+}
+
+
+<h5 class="text-right"><a asp-action="Index"> Back</a></h5>
+<center><h1>Weight Log</h1></center><br />
+
+<form asp-controller="Profile" asp-action="LogWeight" method="post">
+    <center>
+        Enter current weight:
+        <input type="number" asp-for="LoggedWeight" class="input-sm text-warning" style="width:50px" />lbs.
+        <input class="btn btn-warning" type="submit" value="Log" />
+    </center>
+</form>
+
+
+<br />
+<strong class="alert-danger text-center">@TempData["message"]</strong>
+<strong class="alert-danger text-center">@TempData["message2"]</strong>
+<div class="text-center">
+    <h4 class="goaly">Weight Goal: @Model.GoalWeight lbs</h4>
+    <h4>Current Weight: @Model.CurrentWeight lbs</h4>
+    <h4>Past Weight: @Model.PastWeight lbs</h4>
+</div><br />
+<h4 class="text-center"><a   asp-action="MacroBreakdown">Click to view Macro Breakdown</a></h4>

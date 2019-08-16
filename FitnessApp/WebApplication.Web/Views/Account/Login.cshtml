@@ -1,0 +1,40 @@
+﻿@using WebApplication.Web.Models.Account;
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h4 class="text-warning text-center"><b><i>Login to update your meal</i></b></h4>
+
+<form asp-controller="account" asp-action="login" method="post">
+    <table class="table table-hover">
+        <tr>
+            <td><label asp-for="Email" class="text-warning"></label></td>
+            <td>
+                <input type="email" asp-for="Email" class="input-sm text-warning" />
+                <span asp-validation-for="Email" class="alert-warning"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="Password" class="text-warning"></label></td>
+            <td>
+                <input type="password" asp-for="Password" class="input-sm text-warning" />
+                <span asp-validation-for="Password" class="alert-warning"></span><br/>
+                <br/>
+                <strong class="alert-danger text-center">@TempData["message"]</strong>
+            </td>
+        </tr>
+    </table>
+ 
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <input type="submit" value="Login" class="btn btn-warning " />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div>
+        <p class="text-warning text-center">Don't have a Account yet? <a asp-action="Register">Register</a></p>
+    </div>
+</form>

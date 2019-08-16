@@ -1,0 +1,65 @@
+﻿@model SearchFoodVM
+@{
+    ViewData["Title"] = $"Add {Model.MealType}";
+}
+
+<h2 class="text-center text-warning">@Model.MealType</h2>
+
+<hr />
+<form asp-action="AddFoodItem" asp-controller="Food" method="post">
+    <table class="table table-striped">
+        <tr>
+            <td>
+                <label class="text-center text-warning" asp-for="Name"> Search</label>
+                <input type="hidden" asp-for="MealType" />
+            </td>
+            <td>
+                <input type="text" placeholder="e.g.Egg" asp-for="Name" class="input-group-sm text-warning" />
+            </td>
+            <td>
+                <input type="submit" value="Search" class="btn btn-warning" />
+            </td>
+        </tr>
+    </table>
+</form>
+<nav>
+    <h4><a asp-action="Index" asp-controller="Profile" class="glyphicon glyphicon-arrow-left"> Back</a></h4>
+</nav>
+
+
+@if (Model.FoodList != null)
+{
+    <h2 class="text-warning">Search Results...</h2>
+    <p class="text-warning">Here are the food items for your search  = @Model.Name</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-warning">Item</th>
+                <th class="text-warning"># of Servings</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Food fooditem in Model.FoodList)
+            {
+                <tr>
+                    <td>
+                        <h4 class="text-warning"><b>@fooditem.Name</b></h4><span class="text-warning">(Serving Size:@fooditem.ServingSize)</span>
+                        <p class="text-warning">(Cal:@fooditem.Calories, Protein:@fooditem.Protein, Fat:@fooditem.Fat, Carbs:@fooditem.Carbs)</p>
+                    </td>
+
+                    <td>
+                        <form asp-action="LogFoodItem" asp-controller="Food" method="post">
+                            <input type="number" asp-for="food.NumberOfServings" class="input-sm text-warning" style="width:50px;" />
+
+                            <input type="hidden" asp-for="food.FoodId" value="@fooditem.FoodId" />
+                            <input type="hidden" asp-for="food.MealType" value="@Model.MealType" />
+
+                            <input type="submit" value="✔" class="btn btn-warning" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

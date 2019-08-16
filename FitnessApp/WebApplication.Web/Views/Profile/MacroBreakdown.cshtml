@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "MacroBreakdown";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td><h4><a asp-action="Index">Tracker</a></h4></td>
+            <td style="width:40%"></td>
+            <td><h4><a asp-action="Progress">Weight Log</a></h4></td>
+        </tr>
+    </thead>
+</table>
+   
+
+<h2 class="text-center">Macro Breakdown</h2>
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+
+
+<body>
+
+    <div id="chartContainer1"></div>
+    @if (Model.Calories == 0)
+    {
+        <center><h4>to view please<a asp-action="Index"> +Add food</a></h4></center><br />        
+        <h6 class="text-right"><a asp-action="Progress">Weight Log</a></h6>
+    }
+    else
+    {
+        <script type="text/javascript">
+
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer1", {
+                height: 350,
+                title: {
+
+                },
+                animationEnabled: true,
+                legend: {
+                    title: "Macro Breakdown",
+                    verticalAlign: "top",
+                    horizontalAlign: "center",
+                    fontSize: 15,
+                    fontFamily: "Helvetica",
+
+                },
+                theme: "light2",
+                data: [
+                    {
+                        type: "pie",
+                        showInLegend: true,
+
+                        dataPoints: [
+                            { y: @Math.Round((((Model.Carbs * 4) / ((Model.Carbs * 4) + (Model.Protein * 4) + (Model.Fats * 9))) * 100), 0), legendText: "{y}% Carbs", label: "" },
+                            { y: @Math.Round((((Model.Protein * 4) / ((Model.Carbs * 4) + (Model.Protein * 4) + (Model.Fats * 9))) * 100), 0), legendText: "{y}% Protein", label: "" },
+                            { y: @Math.Round((((Model.Fats * 9) / ((Model.Carbs * 4) + (Model.Protein * 4) + (Model.Fats * 9))) * 100), 0), legendText: "{y}% Fat", label: "" },
+                        ]
+                    }
+                ]
+            });
+
+            chart.render();
+                };
+
+        </script>
+    }
+
+
+</body>
